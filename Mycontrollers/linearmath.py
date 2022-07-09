@@ -1,3 +1,13 @@
+# _*_ coding: utf-8 _*_
+"""
+Created on 08/07/2022
+	Class to graph linearRegressions
+@author: ADOB
+
+require matplotlib, numpy, scipy, seaborn, sklearn, pandas, statsmodels
+execute: pip install matplotlib numpy scipy seaborn sklearn pandas statsmodels
+"""
+
 # Tratamiento de datos
 # ==============================================================================
 import pandas as pd
@@ -21,18 +31,25 @@ import statsmodels.formula.api as smf
 # Configuración warnings
 # ==============================================================================
 import warnings
-warnings.filterwarnings('ignore')
 
 class LinearSolve:
 
+	# Constructor function
 	def __init__ (self, xs, ys, title, xlabel, ylabel, figname):
-		print("Calling constructor")
+		warnings.filterwarnings('ignore')
 
-		bateos = xs
-		runs = ys
+		print("Calling constructor")
+		class_name = self.__class__.__name__
+		print(class_name, "Ready")
 		
-		datos = pd.DataFrame({'bateos': bateos, 'runs': runs})
+		varindependent = xs
+		vardependent = ys
+		
+		datos = pd.DataFrame({'varindependent': varindependent, 'vardependent': vardependent})
 		datos.head(3)
+		print("")
+		print(datos)
+		print("")
 
 		# Gráfico
 		# ==============================================================================
@@ -40,14 +57,16 @@ class LinearSolve:
 		params = {'text.latex.preamble': [r'\usepackage{siunitx}', r'\usepackage{amsmath}']}
 		plt.rcParams.update(params)
 
+		# Initialise the figure and a subplot axes. Each subplot sharing (showing) the
+		# same range of values for the x and y axis in the plots
 		fig, ax = plt.subplots(2, 1,figsize=(6, 3.84), sharex=True, sharey=True)
 
 		# Set the title for the figure
-		fig.suptitle("Linealización", fontsize=15)
+		#fig.suptitle("Linealización", fontsize=10)
 
 		datos.plot(
-			x = 'bateos',
-			y = 'runs',
+			x = 'varindependent',
+			y = 'vardependent',
 			c = 'firebrick',
 			kind = "scatter",
 			ax = ax[0]
@@ -56,16 +75,26 @@ class LinearSolve:
 		ax[0].set_xlabel(xlabel)
 		ax[0].set_ylabel(ylabel)
 
+		# Show the major grid lines with dark grey lines
+		ax[0].grid(visible=True, which='major', color='#666666', linestyle='-')
+		ax[0].grid(visible=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
+		ax[0].minorticks_on()
+
+		# Show the minor grid lines with very faint and almost transparent grey lines
+		ax[1].grid(visible=True, which='major', color='#666666', linestyle='-')
+		ax[1].grid(visible=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
+		ax[1].minorticks_on()
+
 		# Correlación lineal entre las dos variables
 		# ==============================================================================
-		corr_test = pearsonr(x = datos['bateos'], y =  datos['runs'])
+		corr_test = pearsonr(x = datos['varindependent'], y =  datos['vardependent'])
 		print("Coeficiente de correlación de Pearson: ", corr_test[0])
 		print("P-value: ", corr_test[1])
 
 		# División de los datos en train y test
 		# ==============================================================================
-		X = datos[['bateos']]
-		y = datos['runs']
+		X = datos[['varindependent']]
+		y = datos['vardependent']
 
 		X_train, X_test, y_train, y_test = train_test_split(
 			X.values.reshape(-1,1),
@@ -82,27 +111,34 @@ class LinearSolve:
 
 		# Información del modelo
 		# ==============================================================================
-		print("Intercept:", modelo.intercept_)
-		print("Coeficiente:", list(zip(X.columns, modelo.coef_.flatten(), )))
+		print("Intercept (b):", modelo.intercept_)
+		self.b1 = modelo.intercept_
+		self.m1 = list(zip(X.columns, modelo.coef_.flatten(), ))
+		print("Coeficiente (m):", list(zip(X.columns, modelo.coef_.flatten(), )))
 		print("Coeficiente de determinación R^2:", modelo.score(X, y))
 
 		# Error de test del modelo 
 		# ==============================================================================
-		predicciones = modelo.predict(X = X_test)
-		print(predicciones[0:3,])
+		predicciones_modelo1 = modelo.predict(X = X_test)
+		print(predicciones_modelo1[0:3,])
 
 		rmse = mean_squared_error(
 			y_true  = y_test,
-			y_pred  = predicciones,
+			y_pred  = predicciones_modelo1,
 			squared = False
 		)
+
+		self.b2 = ((predicciones_modelo1[0][0]) + (predicciones_modelo1[1][0]) + (predicciones_modelo1[2][0]))/3
+
 		print("")
 		print(f"El error (rmse) de test es: {rmse}")
+		print("")
+		print("")
 
 		# División de los datos en train y test
 		# ==============================================================================
-		X = datos[['bateos']]
-		y = datos['runs']
+		X = datos[['varindependent']]
+		y = datos['vardependent']
 
 		X_train, X_test, y_train, y_test = train_test_split(
 			X.values.reshape(-1,1),
@@ -135,6 +171,26 @@ class LinearSolve:
 		predicciones['y'] = y_train
 		predicciones = predicciones.sort_values('x')
 
+		# Error de test del modelo 
+		# ==============================================================================
+		X_test = sm.add_constant(X_test, prepend=True)
+		predicciones_error = modelo.predict(exog = X_test)
+		rmse = mean_squared_error(
+			y_true  = y_test,
+			y_pred  = predicciones_error,
+			squared = False
+			)
+		print(f"El error (rmse) de test es: {rmse}")
+
+		# Imprimimos las regresiones
+		# ==============================================================================
+		print("")
+		print("Regresión Linear 1:", f"{self.m1[0][1]}x+{self.b1[0]}")
+		print("Regresión Linear 2 (predictions):", f"{self.m1[0][1]}x+{self.b2}")
+		print("Regresión Linear 3 (mean(1,2)):", f"{self.m1[0][1]}x+{(self.b2+self.b1[0])/2}")
+		print("")
+		print("")
+
 		# Gráfico del modelo
 		# ==============================================================================
 		#fig, ax = plt.subplots(figsize=(6, 3.84))
@@ -152,19 +208,8 @@ class LinearSolve:
 
 		plt.savefig(figname)
 		plt.show()
-
-		# Error de test del modelo 
-		# ==============================================================================
-		X_test = sm.add_constant(X_test, prepend=True)
-		predicciones = modelo.predict(exog = X_test)
-		rmse = mean_squared_error(
-			y_true  = y_test,
-			y_pred  = predicciones,
-			squared = False
-			)
-		print("")
-		print(f"El error (rmse) de test es: {rmse}")
-
+	
+	# Destroyer function
 	def __del__ (self):
 		class_name = self.__class__.__name__
 		print(class_name, "destroyed")
