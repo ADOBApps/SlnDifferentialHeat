@@ -200,7 +200,7 @@ class LinearSolve:
 		ax[1].set_ylabel(ylabel)
 
 		ax[1].scatter(predicciones['x'], predicciones['y'], marker='o', color = "gray")
-		ax[1].plot(predicciones['x'], predicciones["mean"], linestyle='-', label="OLS")
+		ax[1].plot(predicciones['x'], predicciones["mean"], linestyle='-', label="Linealización")
 		ax[1].plot(predicciones['x'], predicciones["mean_ci_lower"], linestyle='--', color='red', label="95% CI")
 		ax[1].plot(predicciones['x'], predicciones["mean_ci_upper"], linestyle='--', color='red')
 		ax[1].fill_between(predicciones['x'], predicciones["mean_ci_lower"], predicciones["mean_ci_upper"], alpha=0.1)
@@ -214,42 +214,3 @@ class LinearSolve:
 		class_name = self.__class__.__name__
 		print(class_name, "destroyed")
 
-
-time = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300]
-
-temp1 = [26.8, 26.8, 26.9, 26.9, 26.9, 26.9, 26.9, 26.9, 26.9, 26.9, 26.9]
-## H2O + KCl 1.12g
-temp2 = [26.0, 25.8, 25.7, 25.6, 25.6, 25.6, 25.6, 25.6, 25.6, 25.6, 25.7]
-
-## H2O + KCl 1.51g
-temp3 = [25.3, 25.0, 24.8, 24.7, 24.6, 24.5, 24.5, 24.4, 24.4, 24.4, 24.4]
-
-## H2O + KCl 2.0g
-temp4 = [24.1, 23.5, 23.4, 23.3, 23.3, 23.2, 23.2, 23.2, 23.2, 23.2, 23.2]
-
-## H2O + KCl 2.5g
-temp5 = [22.9, 22.1, 21.9, 21.8, 21.8, 21.7, 21.7, 21.7, 21.8, 21.8, 21.8]
-
-## H2O + KCl 3.0g
-temp6 = [21.8, 21.0, 20.7, 20.7, 20.6, 20.6, 20.6, 20.6, 20.7, 20.7, 20.7]
-
-## H2O + KCl 0.50g
-LinearSolve(time, temp1, r'Distribución $H_{2}O+KCl(0.50g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_0.50.png")
-
-## H2O + KCl 1.12g
-#LinearSolve(time, temp2, r'Distribución $H_{2}O+KCl(1.12g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_1.12.png")
-
-## H2O + KCl 1.51g
-#LinearSolve(time, temp3, r'Distribución $H_{2}O+KCl(1.51g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_1.51.png")
-
-## H2O + KCl 2.0g
-#LinearSolve(time, temp4, r'Distribución $H_{2}O+KCl(2.00g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_2.00.png")
-
-## H2O + KCl 2.5g
-#LinearSolve(time, temp5, r'Distribución $H_{2}O+KCl(2.50g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_2.50.png")
-
-## H2O + KCl 3.0g
-#LinearSolve(time, temp6, r'Distribución $H_{2}O+KCl(3.00g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_3.00.png")
-
-
-#(self, xs, ys, title, xlabel, ylabel, figname)
