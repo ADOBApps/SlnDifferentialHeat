@@ -47,7 +47,7 @@ ax.legend(prop={'size': 10}, loc="upper right")
 
 
 # Save figure
-fig.savefig("H2O+KCl_1.21.png")
+fig.savefig("H2O+KCl_1.12.png")
 
 # Show plot
 plt.show()
