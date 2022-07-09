@@ -25,27 +25,32 @@ warnings.filterwarnings('ignore')
 
 class LinearSolve:
 
-	def __init__ (self, ys, xs):
+	def __init__ (self, xs, ys, title, xlabel, ylabel, figname):
 		print("Calling constructor")
 
-		bateos = ys
-		runs = xs
+		bateos = xs
+		runs = ys
 		
 		datos = pd.DataFrame({'bateos': bateos, 'runs': runs})
 		datos.head(3)
 
 		# Gráfico
 		# ==============================================================================
-		fig, ax = plt.subplots(figsize=(6, 3.84))
+		fig, ax = plt.subplots(2, 1,figsize=(6, 3.84), sharex=True, sharey=True)
+
+		# Set the title for the figure
+		fig.suptitle("Linealización", fontsize=15)
 
 		datos.plot(
 			x = 'bateos',
 			y = 'runs',
 			c = 'firebrick',
 			kind = "scatter",
-			ax = ax
+			ax = ax[0]
 		)
-		ax.set_title('Distribución de bateos y runs');
+		ax[0].set_title(title);
+		ax[0].set_xlabel(xlabel)
+		ax[0].set_ylabel(ylabel)
 
 		# Correlación lineal entre las dos variables
 		# ==============================================================================
@@ -128,15 +133,20 @@ class LinearSolve:
 
 		# Gráfico del modelo
 		# ==============================================================================
-		fig, ax = plt.subplots(figsize=(6, 3.84))
+		#fig, ax = plt.subplots(figsize=(6, 3.84))
+		
+		ax[1].set_title(f"{title} Linealizada");
+		ax[1].set_xlabel(xlabel)
+		ax[1].set_ylabel(ylabel)
 
-		ax.scatter(predicciones['x'], predicciones['y'], marker='o', color = "gray")
-		ax.plot(predicciones['x'], predicciones["mean"], linestyle='-', label="OLS")
-		ax.plot(predicciones['x'], predicciones["mean_ci_lower"], linestyle='--', color='red', label="95% CI")
-		ax.plot(predicciones['x'], predicciones["mean_ci_upper"], linestyle='--', color='red')
-		ax.fill_between(predicciones['x'], predicciones["mean_ci_lower"], predicciones["mean_ci_upper"], alpha=0.1)
-		ax.legend();
+		ax[1].scatter(predicciones['x'], predicciones['y'], marker='o', color = "gray")
+		ax[1].plot(predicciones['x'], predicciones["mean"], linestyle='-', label="OLS")
+		ax[1].plot(predicciones['x'], predicciones["mean_ci_lower"], linestyle='--', color='red', label="95% CI")
+		ax[1].plot(predicciones['x'], predicciones["mean_ci_upper"], linestyle='--', color='red')
+		ax[1].fill_between(predicciones['x'], predicciones["mean_ci_lower"], predicciones["mean_ci_upper"], alpha=0.1)
+		ax[1].legend();
 
+		plt.savefig(figname)
 		plt.show()
 
 		# Error de test del modelo 
@@ -175,4 +185,5 @@ temp5 = [22.9, 22.1, 21.9, 21.8, 21.8, 21.7, 21.7, 21.7, 21.8, 21.8, 21.8]
 temp6 = [21.8, 21.0, 20.7, 20.7, 20.6, 20.6, 20.6, 20.6, 20.7, 20.7, 20.7]
 
 
-LinearSolve(time, temp2)
+LinearSolve(time, temp2, 'Distribución X-Y23', "Tiempo (s)", "Temperatura(°C)", "linealizacion.png")
+#(self, xs, ys, title, xlabel, ylabel, figname)
