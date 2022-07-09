@@ -200,7 +200,7 @@ class LinearSolve:
 		ax[1].set_ylabel(ylabel)
 
 		ax[1].scatter(predicciones['x'], predicciones['y'], marker='o', color = "gray")
-		ax[1].plot(predicciones['x'], predicciones["mean"], linestyle='-', label="Linealización")
+		ax[1].plot(predicciones['x'], predicciones["mean"], linestyle='-', label="E. Lineal")
 		ax[1].plot(predicciones['x'], predicciones["mean_ci_lower"], linestyle='--', color='red', label="95% CI")
 		ax[1].plot(predicciones['x'], predicciones["mean_ci_upper"], linestyle='--', color='red')
 		ax[1].fill_between(predicciones['x'], predicciones["mean_ci_lower"], predicciones["mean_ci_upper"], alpha=0.1)

@@ -35,7 +35,7 @@ temp5 = [22.9, 22.1, 21.9, 21.8, 21.8, 21.7, 21.7, 21.7, 21.8, 21.8, 21.8]
 temp6 = [21.8, 21.0, 20.7, 20.7, 20.6, 20.6, 20.6, 20.6, 20.7, 20.7, 20.7]
 
 if __name__ == "__main__":
-	mysalt.General("H2O+KCl-general.png")
+	mysalt.Comparison("H2O+KCl-general.png", time, temp1, temp2, temp3, temp4, temp5, temp6)
 
 	## H2O + KCl 0.50g
 	mysalt.Any(r'Curvas $H_{2}O + KCl$', "Tiempo (s)", "Temperatura (°C)", "H2O+KCl_0.50.png", time, temp1, r'$H_{2}O+0.50g KCl$')

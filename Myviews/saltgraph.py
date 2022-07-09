@@ -52,7 +52,7 @@ class Salt:
 		print(class_name, "destroyed")
 
 	# General function
-	def General(self, graph_name):
+	def Comparison(self, graph_name, time, temp1, temp2, temp3, temp4, temp5, temp6):
 		# Create figure and axes
 		fig = plt.figure()
 		fig.clf()
@@ -65,18 +65,18 @@ class Salt:
 		ax.set_xlabel("Tiempo (s)")
 		ax.set_ylabel("Temperatura (°C)")
 
-		ax.plot(self.time, self.temp1, label=r'$H_{2}O+0.50g KCl$')
-		ax.plot(self.time, self.temp1, 'bo')
-		ax.plot(self.time, self.temp2, label=r'$H_{2}O+1.12g KCl$')
-		ax.plot(self.time, self.temp2, 'bo')
-		ax.plot(self.time, self.temp3, label=r'$H_{2}O+1.51g KCl$')
-		ax.plot(self.time, self.temp3, 'bo')
-		ax.plot(self.time, self.temp4, label=r'$H_{2}O+2.00g KCl$')
-		ax.plot(self.time, self.temp4, 'bo')
-		ax.plot(self.time, self.temp5, label=r'$H_{2}O+2.50g KCl$')
-		ax.plot(self.time, self.temp5, 'bo')
-		ax.plot(self.time, self.temp6, label=r'$H_{2}O+3.00g KCl$')
-		ax.plot(self.time, self.temp6, 'bo')
+		ax.plot(time, temp1, label=r'$H_{2}O+0.50g KCl$')
+		ax.plot(time, temp1, 'bo')
+		ax.plot(time, temp2, label=r'$H_{2}O+1.12g KCl$')
+		ax.plot(time, temp2, 'bo')
+		ax.plot(time, temp3, label=r'$H_{2}O+1.51g KCl$')
+		ax.plot(time, temp3, 'bo')
+		ax.plot(time, temp4, label=r'$H_{2}O+2.00g KCl$')
+		ax.plot(time, temp4, 'bo')
+		ax.plot(time, temp5, label=r'$H_{2}O+2.50g KCl$')
+		ax.plot(time, temp5, 'bo')
+		ax.plot(time, temp6, label=r'$H_{2}O+3.00g KCl$')
+		ax.plot(time, temp6, 'bo')
 
 		# Show the major and minor grid lines
 		ax.grid(visible=True, which='major', color='#666666', linestyle='-')
