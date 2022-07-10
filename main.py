@@ -85,10 +85,10 @@ def MakeTvsT():
 def MakeSlnHvsnK():
 	#
 	mysalt.Any(
-		r'Curvas $H_{2}O +KCl$', 
-		r'$n_{B} (moles)$', 
-		r'$\Delta{H_{S}}(J)$', 
-		"SlnHvsn.png", 
+		r'Curva $\Delta{H_{S}}$ vs $n_{KCl}$', 
+		r'$n_{KCl}$ $(moles)$', 
+		r'$\Delta{H_{S}}$ $(J)$', 
+		"SlnHvsnPotasio.png", 
 		n_B, 
 		slnH, 
 		r'$H_{2}O+KCl$'
@@ -96,10 +96,10 @@ def MakeSlnHvsnK():
 	LinearSolve(
 		n_B, 
 		slnH, 
-		r'Distribución $\Delta{H_{S}}$ vs $n_{B}$', 
-		r'$n_{B} (moles)$', 
-		r'$\Delta{H_{S}}(J)$', 
-		"linealizacion_slnHvsn.png",
+		r'Distribución $\Delta{H_{S}}$ vs $n_{KCl}$', 
+		r'$n_{KCl}$ $(moles)$', 
+		r'$\Delta{H_{S}}$ $(J)$', 
+		"linealizacion_slnHvsnPotasio.png",
 		9
 		)
 
@@ -107,10 +107,10 @@ def MakeSlnHvsnK():
 def MakeIntHvsmK():
 	#
 	mysalt.Any(
-		r'Curvas $H_{2}O + KCl$', 
+		r'Curva $\Delta{H_{Int, KCl}}$ vs $molalidad$', 
 		r'$molalidad$', 
-		r'$\Delta{H_{Int, B}}(\frac{KJ}{mol})$', 
-		"IntHvsm.png", 
+		r'$\Delta{H_{Int, KCl}}$ $(\frac{KJ}{mol})$', 
+		"IntHvsmPotasio.png", 
 		molality, 
 		intHeat, 
 		r'$H_{2}O+KCl$'
@@ -118,10 +118,10 @@ def MakeIntHvsmK():
 	LinearSolve(
 		molality, 
 		intHeat, 
-		r'Distribución $\Delta{H_{Int, B}}$ vs $molalidad$', 
+		r'Distribución $\Delta{H_{Int, KCl}}$ vs $molalidad$', 
 		r'$molalidad$', 
-		r'$\Delta{H_{Int, B}}(\frac{KJ}{mol})$', 
-		"linealizacion_IntHvsm.png",
+		r'$\Delta{H_{Int, KCl}}$ $(\frac{KJ}{mol})$', 
+		"linealizacion_IntHvsmPotasio.png",
 		9
 		)
 
@@ -132,19 +132,19 @@ def MakeIntHvsmK():
 def MakeSlnHvsnNa():
 	#
 	mysalt.Any(
-		r'Curvas $H_{2}O + Na_{2}CO_{3}$', 
-		r'$n_{B} (moles)$', 
-		r'$\Delta{H_{S}}(J)$', 
+		r'Curva $\Delta{H_{S}}$ vs $n_{Na_{2}CO_{3}}$', 
+		r'$n_{Na_{2}CO_{3}}$ $(moles)$', 
+		r'$\Delta{H_{S}}$ $(J)$', 
 		"SlnHvsnSodium.png", 
 		n_B1, 
 		slnH1, 
-		r'$H_{2}O+KCl$'
+		r'$H_{2}O+Na_{2}CO_{3}$'
 		)
 	LinearSolve(
 		n_B1, 
 		slnH1, 
-		r'Distribución $\Delta{H_{S}}$ vs $n_{B}$', 
-		r'$n_{B} (moles)$', 
+		r'Distribución $\Delta{H_{S}}$ vs $n_{Na_{2}CO_{3}}$', 
+		r'$n_{Na_{2}CO_{3}}$ $(moles)$', 
 		r'$\Delta{H_{S}}(J)$', 
 		"linealizacion_slnHvsnSodium.png",
 		9
@@ -154,9 +154,9 @@ def MakeSlnHvsnNa():
 def MakeIntHvsmNa():
 	#
 	mysalt.Any(
-		r'Curvas $H_{2}O + Na_{2}CO_{3}$', 
+		r'Curva $\Delta{H_{Int, Na_{2}CO_{3}}}$ vs $molalidad$', 
 		r'$molalidad$', 
-		r'$\Delta{H_{Int, B}}(\frac{KJ}{mol})$', 
+		r'$\Delta{H_{Int, Na_{2}CO_{3}}}$ $(\frac{KJ}{mol})$', 
 		"IntHvsmSodium.png", 
 		molality1, 
 		intHeat1, 
@@ -165,17 +165,17 @@ def MakeIntHvsmNa():
 	LinearSolve(
 		molality1, 
 		intHeat1, 
-		r'Distribución $\Delta{H_{Int, B}}$ vs $molalidad$', 
+		r'Distribución $\Delta{H_{Int, Na_{2}CO_{3}}}$ vs $molalidad$', 
 		r'$molalidad$', 
-		r'$\Delta{H_{Int, B}}(\frac{KJ}{mol})$', 
+		r'$\Delta{H_{Int, Na_{2}CO_{3}}}$ $(\frac{KJ}{mol})$', 
 		"linealizacion_IntHvsmSodium.png",
 		9
 		)
 
 if __name__ == "__main__":
-	#MakeSlnHvsnK()
+	MakeSlnHvsnK()
 	MakeIntHvsmK()
-	#MakeSlnHvsnNa()
-	#MakeIntHvsmNa()
+	MakeSlnHvsnNa()
+	MakeIntHvsmNa()
 
 	

@@ -237,7 +237,7 @@ class LinearSolve:
 
 		# Initialise the figure and a subplot axes. Each subplot sharing (showing) the
 		# same range of values for the x and y axis in the plots
-		fig, ax = plt.subplots(1, 1,figsize=(6, 3.84), sharex=True, sharey=True)
+		fig, ax = plt.subplots(1, 1,figsize=(6, 4), sharex=True, sharey=True)
 
 		# Set the title for the figure
 		#fig.suptitle("Linealización", fontsize=10)
