@@ -13,6 +13,9 @@ from Mycontrollers.math.linearmath import LinearSolve
 from Myviews.saltgraph import Salt
 
 mysalt = Salt()
+
+#==========================================================================
+#KCl
 # Data TvsT
 ## General time data
 time = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300]
@@ -33,9 +36,22 @@ temp6 = [21.8, 21.0, 20.7, 20.7, 20.6, 20.6, 20.6, 20.6, 20.7, 20.7, 20.7]
 n_B = [0.0067, 0.0217, 0.0420, 0.0688, 0.1023, 0.1426]
 slnH = [-93.32, 279.9, 559.9, 839.8, 1026.5, 279.9]
 
+
 # Data Heat integral solution vs molality
 molality = [0.1397, 0.4526, 0.8745, 1.4333, 2.1318, 2.970]
-intHeat = [-13.9137, 18.6344, 27.6431, 31.3051, 30.6101, 6.9568]
+intHeat = [-13.9137, 12.8831, 13.3358, 12.2050, 10.0295, 1.9634]
+#==========================================================================
+
+#==========================================================================
+#Na2CO3
+# Data Heat solution vs n (moles)
+n_B1 = [0.0047, 0.0142, 0.0283, 0.0472, 0.0708, 0.0991]
+slnH1 = [-207.78, -935.00, -1766.11, -2597.22, -2597.22, -3324.44]
+
+# Data Heat integral solution vs molality
+molality1 = [0.0939, 0.2816, 0.56312, 0.9386, 1.4079, 1.9711]
+intHeat1 = [-44.044, -66.066, -62.396, -55.055, -36.704, -33.558]
+#==========================================================================
 
 # Plot graph and linearRegression type Time vs Temperature
 def MakeTvsT():
@@ -66,10 +82,10 @@ def MakeTvsT():
 	LinearSolveComp(time, temp6, r'Distribución $H_{2}O+KCl(3.00g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_3.00.png", 6)
 
 # Plot Heat solution vs n (moles)
-def MakeSlnHvsn():
+def MakeSlnHvsnK():
 	#
 	mysalt.Any(
-		r'Curvas $H_{2}O + KCl$', 
+		r'Curvas $H_{2}O +KCl$', 
 		r'$n_{B} (moles)$', 
 		r'$\Delta{H_{S}}(J)$', 
 		"SlnHvsn.png", 
@@ -88,7 +104,7 @@ def MakeSlnHvsn():
 		)
 
 # Plot Heat integral solution vs molality
-def MakeIntHvsm():
+def MakeIntHvsmK():
 	#
 	mysalt.Any(
 		r'Curvas $H_{2}O + KCl$', 
@@ -109,7 +125,57 @@ def MakeIntHvsm():
 		9
 		)
 
+#==========================================================================
+#Na2CO3
+
+# Plot Heat solution vs n (moles)
+def MakeSlnHvsnNa():
+	#
+	mysalt.Any(
+		r'Curvas $H_{2}O + Na_{2}CO_{3}$', 
+		r'$n_{B} (moles)$', 
+		r'$\Delta{H_{S}}(J)$', 
+		"SlnHvsnSodium.png", 
+		n_B1, 
+		slnH1, 
+		r'$H_{2}O+KCl$'
+		)
+	LinearSolve(
+		n_B1, 
+		slnH1, 
+		r'Distribución $\Delta{H_{S}}$ vs $n_{B}$', 
+		r'$n_{B} (moles)$', 
+		r'$\Delta{H_{S}}(J)$', 
+		"linealizacion_slnHvsnSodium.png",
+		9
+		)
+
+# Plot Heat integral solution vs molality
+def MakeIntHvsmNa():
+	#
+	mysalt.Any(
+		r'Curvas $H_{2}O + Na_{2}CO_{3}$', 
+		r'$molalidad$', 
+		r'$\Delta{H_{Int, B}}(\frac{KJ}{mol})$', 
+		"IntHvsmSodium.png", 
+		molality1, 
+		intHeat1, 
+		r'$H_{2}O+Na_{2}CO_{3}}$'
+		)
+	LinearSolve(
+		molality1, 
+		intHeat1, 
+		r'Distribución $\Delta{H_{Int, B}}$ vs $molalidad$', 
+		r'$molalidad$', 
+		r'$\Delta{H_{Int, B}}(\frac{KJ}{mol})$', 
+		"linealizacion_IntHvsmSodium.png",
+		9
+		)
+
 if __name__ == "__main__":
-	#MakeSlnHvsn()
-	MakeIntHvsm()
+	#MakeSlnHvsnK()
+	MakeIntHvsmK()
+	#MakeSlnHvsnNa()
+	#MakeIntHvsmNa()
+
 	
