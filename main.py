@@ -29,9 +29,13 @@ temp5 = [22.9, 22.1, 21.9, 21.8, 21.8, 21.7, 21.7, 21.7, 21.8, 21.8, 21.8]
 ## H2O + KCl 3.0g
 temp6 = [21.8, 21.0, 20.7, 20.7, 20.6, 20.6, 20.6, 20.6, 20.7, 20.7, 20.7]
 
-# Data SlnHvsn
+# Data Heat solution vs n (moles)
 n_B = [0.0067, 0.0217, 0.0420, 0.0688, 0.1023, 0.1426]
 slnH = [-93.32, 279.9, 559.9, 839.8, 1026.5, 279.9]
+
+# Data Heat integral solution vs molality
+molality = [0.1397, 0.4526, 0.8745, 1.4333, 2.1318, 2.970]
+intHeat = [-13.9137, 18.6344, 27.6431, 31.3051, 30.6101, 6.9568]
 
 # Plot graph and linearRegression type Time vs Temperature
 def MakeTvsT():
@@ -83,6 +87,29 @@ def MakeSlnHvsn():
 		9
 		)
 
+# Plot Heat integral solution vs molality
+def MakeIntHvsm():
+	#
+	mysalt.Any(
+		r'Curvas $H_{2}O + KCl$', 
+		r'$molalidad$', 
+		r'$\Delta{H_{Int, B}}(\frac{KJ}{mol})$', 
+		"IntHvsm.png", 
+		molality, 
+		intHeat, 
+		r'$H_{2}O+KCl$'
+		)
+	LinearSolve(
+		molality, 
+		intHeat, 
+		r'Distribución $\Delta{H_{Int, B}}$ vs $molalidad$', 
+		r'$molalidad$', 
+		r'$\Delta{H_{Int, B}}(\frac{KJ}{mol})$', 
+		"linealizacion_IntHvsm.png",
+		9
+		)
+
 if __name__ == "__main__":
-	MakeSlnHvsn()
+	#MakeSlnHvsn()
+	MakeIntHvsm()
 	
