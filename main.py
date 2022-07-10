@@ -48,17 +48,17 @@ def MakeTvsT():
 	## H2O + KCl 3.0g
 	mysalt.Any(r'Curvas $H_{2}O + KCl$', "Tiempo (s)", "Temperatura (°C)", "H2O+KCl_3.00.png", time, temp6, r'$H_{2}O+3.00g KCl$')
 	## H2O + KCl 0.50g
-	LinearSolve(time, temp1, r'Distribución $H_{2}O+KCl(0.50g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_0.50.png")
+	LinearSolve(time, temp1, r'Distribución $H_{2}O+KCl(0.50g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_0.50.png", 6)
 	## H2O + KCl 1.12g
-	LinearSolve(time, temp2, r'Distribución $H_{2}O+KCl(1.12g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_1.12.png")
+	LinearSolve(time, temp2, r'Distribución $H_{2}O+KCl(1.12g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_1.12.png", 6)
 	## H2O + KCl 1.51g
-	LinearSolve(time, temp3, r'Distribución $H_{2}O+KCl(1.51g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_1.51.png")
+	LinearSolve(time, temp3, r'Distribución $H_{2}O+KCl(1.51g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_1.51.png", 6)
 	## H2O + KCl 2.0g
-	LinearSolve(time, temp4, r'Distribución $H_{2}O+KCl(2.00g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_2.00.png")
+	LinearSolve(time, temp4, r'Distribución $H_{2}O+KCl(2.00g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_2.00.png", 6)
 	## H2O + KCl 2.5g
-	LinearSolve(time, temp5, r'Distribución $H_{2}O+KCl(2.50g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_2.50.png")
+	LinearSolve(time, temp5, r'Distribución $H_{2}O+KCl(2.50g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_2.50.png", 6)
 	## H2O + KCl 3.0g
-	LinearSolve(time, temp6, r'Distribución $H_{2}O+KCl(3.00g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_3.00.png")
+	LinearSolve(time, temp6, r'Distribución $H_{2}O+KCl(3.00g)$', "Tiempo (s)", "Temperatura(°C)", "linealizacion_3.00.png", 6)
 
 # Plot Heat solution vs n (moles)
 def MakeSlnHvsn():
@@ -78,7 +78,8 @@ def MakeSlnHvsn():
 		r'Distribución $\Delta{H_{S}}$ vs $n_{B}$', 
 		r'$n_{B} (moles)$', 
 		r'$\Delta{H_{S}}(J)$', 
-		"linealizacion_slnHvsn.png"
+		"linealizacion_slnHvsn.png",
+		6.5
 		)
 
 if __name__ == "__main__":

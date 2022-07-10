@@ -35,7 +35,7 @@ import warnings
 class LinearSolve:
 
 	# Constructor function
-	def __init__ (self, xs, ys, title, xlabel, ylabel, figname):
+	def __init__ (self, xs, ys, title, xlabel, ylabel, figname, legendsize):
 		warnings.filterwarnings('ignore')
 
 		print("Calling constructor")
@@ -200,7 +200,7 @@ class LinearSolve:
 		ax[1].plot(predicciones['x'], predicciones["mean_ci_lower"], linestyle='--', color='red', label="95% CI")
 		ax[1].plot(predicciones['x'], predicciones["mean_ci_upper"], linestyle='--', color='red')
 		ax[1].fill_between(predicciones['x'], predicciones["mean_ci_lower"], predicciones["mean_ci_upper"], alpha=0.1)
-		ax[1].legend();
+		ax[1].legend(fontsize=legendsize);
 
 		plt.savefig(figname)
 		plt.show()
