@@ -128,8 +128,6 @@ class LinearSolve:
 			squared = False
 		)
 
-		self.b2 = ((predicciones_modelo1[0][0]) + (predicciones_modelo1[1][0]) + (predicciones_modelo1[2][0]))/3
-
 		print("")
 		print(f"El error (rmse) de test es: {rmse}")
 		print("")
@@ -186,8 +184,6 @@ class LinearSolve:
 		# ==============================================================================
 		print("")
 		print("Regresión Linear 1:", f"{self.m1[0][1]}x+{self.b1[0]}")
-		print("Regresión Linear 2 (predictions):", f"{self.m1[0][1]}x+{self.b2}")
-		print("Regresión Linear 3 (mean(1,2)):", f"{self.m1[0][1]}x+{(self.b2+self.b1[0])/2}")
 		print("")
 		print("")
 
@@ -200,7 +196,7 @@ class LinearSolve:
 		ax[1].set_ylabel(ylabel)
 
 		ax[1].scatter(predicciones['x'], predicciones['y'], marker='o', color = "gray")
-		ax[1].plot(predicciones['x'], predicciones["mean"], linestyle='-', label="E. Lineal")
+		ax[1].plot(predicciones['x'], predicciones["mean"], linestyle='-', label=f"{self.m1[0][1]}x + {self.b1[0]}")
 		ax[1].plot(predicciones['x'], predicciones["mean_ci_lower"], linestyle='--', color='red', label="95% CI")
 		ax[1].plot(predicciones['x'], predicciones["mean_ci_upper"], linestyle='--', color='red')
 		ax[1].fill_between(predicciones['x'], predicciones["mean_ci_lower"], predicciones["mean_ci_upper"], alpha=0.1)
