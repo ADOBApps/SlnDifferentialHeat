@@ -8,9 +8,9 @@ require matplotlib, sympy, numpy, scipy
 execute: pip install matplotlib sympy numpy scipy
 """
 
-from Mycontrollers.math.linearmath import LinearSolveComp
-from Mycontrollers.math.linearmath import LinearSolve
-from Myviews.saltgraph import Salt
+from mycontrollers.math.linearmath import LinearSolveComp
+from mycontrollers.math.linearmath import LinearSolve
+from myviews.saltgraph import Salt
 
 mysalt = Salt()
 
